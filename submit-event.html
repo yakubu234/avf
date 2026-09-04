@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Submit your event to Afroverified."><title>Submit Your Event — Afroverified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/pages/submit-event.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="submit-page">
+  <header class="header"><div class="container header__inner"><a class="brand" href="index.html" aria-label="Afroverified home"><img src="assets/images/logo-dark.png" alt="Afroverified"></a><nav class="desktop-nav" aria-label="Main navigation"><a href="events.html">Events</a><a href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a></nav><div class="header__actions"><a class="button button--small" href="submit-event.html">Submit Event</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><nav class="mobile-menu" aria-label="Mobile navigation"><a href="events.html">Events</a><a href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a><a href="submit-event.html">Submit Event</a></nav></header>
+  <main class="submit-layout">
+    <section class="submit-workspace">
+      <div class="submit-inner"><h1>Submit Your Event</h1><p class="submit-lead">Share your event for consideration in the<br> Afroverified Event Calendar and What's The Vibe.</p>
+        <ol class="stepper" aria-label="Submission progress"><li class="active" data-step-indicator="1"><b>1</b><span>Event Info</span></li><li data-step-indicator="2"><b>2</b><span>Details</span></li><li data-step-indicator="3"><b>3</b><span>Additional</span></li><li data-step-indicator="4"><b>4</b><span>Review</span></li></ol>
+        <form id="event-form" novalidate>
+          <section class="form-step active" data-step="1"><h2>Event Information</h2><div class="form-grid">
+            <label>Event Name <em>*</em><input name="eventName" required placeholder="e.g. Afrobeats in the City"></label>
+            <label>Event Type <em>*</em><select name="eventType" required><option value="">Select event type</option><option>Concert</option><option>Day Party</option><option>Festival</option><option>Nightlife</option></select></label>
+            <label>Organizer / Company <em>*</em><input name="organizer" required placeholder="e.g. AfroVybz Entertainment"></label>
+            <label>Location <em>*</em><select name="location" required><option value="">Select city</option><option>Toronto</option><option>Brampton</option><option>Montreal</option><option>Ottawa</option></select></label>
+            <label>Contact Name <em>*</em><input name="contactName" required placeholder="Your full name"></label>
+            <label>Venue Name <em>*</em><input name="venue" required placeholder="Venue name"></label>
+            <label>Email <em>*</em><input name="email" type="email" required placeholder="youremail@example.com"></label>
+            <label>Event Date <em>*</em><input name="eventDate" type="date" required></label>
+            <label>Instagram Handle <em>*</em><input name="instagram" required placeholder="@yourhandle"></label>
+            <label>Event Time <em>*</em><input name="eventTime" type="time" required></label>
+          </div></section>
+          <section class="form-step" data-step="2"><h2>Event Details</h2><div class="form-grid"><label class="wide">Event Description <em>*</em><textarea name="description" required placeholder="Tell us what makes your event special"></textarea></label><label>Ticket URL <em>*</em><input name="ticketUrl" type="url" required placeholder="https://"></label><label>Ticket Price<input name="price" placeholder="$0.00"></label><label>Age Restriction<select name="age"><option>All ages</option><option>18+</option><option>19+</option><option>21+</option></select></label><label>Capacity<input name="capacity" type="number" min="1" placeholder="Expected attendance"></label></div></section>
+          <section class="form-step" data-step="3"><h2>Additional Information</h2><div class="form-grid"><label class="wide">Event Artwork <em>*</em><input name="artwork" type="file" accept="image/*" required><small>Portrait event artwork is recommended.</small></label><label>Website<input name="website" type="url" placeholder="https://"></label><label>Genre<select name="genre"><option>Afrobeats</option><option>Amapiano</option><option>Soca</option><option>Reggae</option><option>Hip Hop</option></select></label><label class="wide">Additional Notes<textarea name="notes" placeholder="Anything else our review team should know?"></textarea></label></div></section>
+          <section class="form-step review-step" data-step="4"><h2>Review Your Submission</h2><p>Check your event information before submitting it for review.</p><dl class="review-summary"></dl><label class="confirmation"><input name="confirm" type="checkbox" required> I confirm that the information provided is accurate.</label></section>
+          <p class="form-error" role="alert"></p><div class="wizard-actions"><button class="back-button" type="button" data-back hidden>← Back</button><button class="button next-button" type="button" data-next>Next Step <span>›</span></button><button class="button submit-button" type="submit" hidden>Submit Event</button></div>
+        </form>
+        <section class="success-message" hidden><span>✓</span><h2>Event Submitted</h2><p>Thanks! Your event has been sent to the Afroverified review team.</p></section>
+      </div>
+    </section>
+    <aside class="submission-sidebar">
+      <section class="sidebar-card submit-benefit"><span class="side-icon">▣</span><div><h2>Submit Your Event</h2><p>Get your event discovered by thousands of vibers across Toronto and beyond.</p></div></section>
+      <section class="sidebar-card review-process"><h2>Our Review Process</h2><ol><li><span>▣</span><div><h3>Event Review</h3><p>Our team reviews your submission to ensure quality and relevance.</p></div></li><li><span>♧</span><div><h3>Notification</h3><p>You’ll receive an email once your event is approved or needs changes.</p></div></li><li><span>✓</span><div><h3>Live on Afroverified</h3><p>Your event goes live on our calendar and What's The Vibe.</p></div></li></ol></section>
+      <section class="sidebar-card help-card"><h2>Need Help?</h2><p>Have questions about submitting your event?</p><a href="mailto:events@afroverified.com">✉ &nbsp; events@afroverified.com</a><a href="https://instagram.com/afrovybzent">▣ &nbsp; @afrovybzent</a></section>
+    </aside>
+  </main>
+  <script src="js/main.js"></script><script src="js/submit-event.js"></script>
+</body></html>

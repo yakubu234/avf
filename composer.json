@@ -1,0 +1,18 @@
+{
+  "name": "afroverified/platform",
+  "description": "Lightweight OOP backend for the Afroverified public site and admin portal",
+  "type": "project",
+  "require": {
+    "php": "^8.2",
+    "doctrine/dbal": "^4.0",
+    "doctrine/migrations": "^3.9",
+    "symfony/cache": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {"AfroVerified\\": "src/"}
+  },
+  "scripts": {
+    "migrate": "doctrine-migrations migrations:migrate --no-interaction",
+    "seed": "php bin/seed.php"
+  }
+}

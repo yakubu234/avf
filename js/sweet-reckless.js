@@ -1,0 +1,1 @@
+const dateToggle=document.querySelector('[data-toggle-dates]');const extraDates=document.querySelector('.extra-dates');dateToggle?.addEventListener('click',()=>{const opening=extraDates.hidden;extraDates.hidden=!opening;dateToggle.textContent=opening?'Hide Additional Dates':'View All Dates';dateToggle.setAttribute('aria-expanded',String(opening))});

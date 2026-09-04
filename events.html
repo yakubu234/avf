@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find Afroverified events by date, city or category.">
+  <title>Events — Afroverified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/pages/events.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="events-page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Afroverified home"><img src="assets/images/logo-dark.png" alt="Afroverified"></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a class="active" href="events.html">Events</a><a href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a></nav>
+      <div class="header__actions"><a class="button button--small" href="submit-event.html">Submit Event</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-menu" aria-label="Mobile navigation"><a href="events.html">Events</a><a href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a><a href="submit-event.html">Submit Event</a></nav>
+  </header>
+
+  <main class="events-main container">
+    <div class="events-content">
+      <header class="events-intro"><h1>Events</h1><p>Find events by date, city or category.</p></header>
+      <form class="event-filters" aria-label="Filter events">
+        <label>Date<select name="date"><option value="weekend">This Weekend</option><option value="today">Today</option><option value="next-seven">Next 7 Days</option></select></label>
+        <label>City<select name="city"><option value="all">All Cities</option><option>Toronto</option><option>Brampton</option><option>Ottawa</option><option>Vancouver</option></select></label>
+        <label>Category<select name="category"><option value="all">All Categories</option><option>Afrobeats</option><option>Amapiano</option><option>Day Party</option><option>Comedy</option></select></label>
+        <button class="filter-reset" type="reset">Reset</button>
+      </form>
+      <div class="filter-tabs" role="tablist" aria-label="Quick date filters"><button class="active" type="button" data-period="all">All Events</button><button type="button" data-period="today">Today</button><button type="button" data-period="weekend">This Weekend</button><button type="button" data-period="next-seven">Next 7 Days</button></div>
+
+      <section class="events-grid" aria-live="polite">
+        <article class="listing-card" data-city="Toronto" data-category="Afrobeats" data-period="weekend"><a href="event-details.html"><div class="listing-card__poster poster-orange"><img src="assets/images/events/afrobeats-city.jpg" alt="Afrobeats in the City"><strong>Afrobeats<small>In The City</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>May</span>24</b><p>⌖ Toronto, ON</p></div><h2>Rebel</h2><p>Afrobeats</p><div class="tags"><span>Afrobeats</span><span>Nightlife</span></div></div></a></article>
+        <article class="listing-card" data-city="Brampton" data-category="Day Party" data-period="weekend"><a href="event-details.html"><div class="listing-card__poster poster-gold"><img src="assets/images/events/day-party.jpg" alt="Day Party Vibes"><strong>Day Party<small>Vibes</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>May</span>25</b><p>⌖ Brampton, ON</p></div><h2>Day Experience</h2><p>Hip Hop &nbsp;•&nbsp; R&amp;B</p><div class="tags"><span>Day Party</span><span>Vibes</span></div></div></a></article>
+        <article class="listing-card" data-city="Oshawa" data-category="Amapiano" data-period="weekend"><a href="event-details.html"><div class="listing-card__poster poster-purple"><img src="assets/images/events/amapiano.jpg" alt="Amapiano Night"><strong>Amapiano<small>Night</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>May</span>25</b><p>⌖ Oshawa, ON</p></div><h2>Amapiano</h2><p>House</p><div class="tags"><span>Amapiano</span><span>Nightlife</span></div></div></a></article>
+        <article class="listing-card" data-city="Ottawa" data-category="Dance" data-period="next-seven"><a href="event-details.html"><div class="listing-card__poster poster-gold"><img src="assets/images/events/soca.jpg" alt="Soca Reggae"><strong>Soca<small>Reggae</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>May</span>30</b><p>⌖ Ottawa, ON</p></div><h2>Soca on the Rooftop</h2><p>Dance</p><div class="tags"><span>Soca</span><span>Reggae</span></div></div></a></article>
+        <article class="listing-card" data-city="Toronto" data-category="Afrobeats" data-period="next-seven"><a href="event-details.html"><div class="listing-card__poster poster-red"><img src="assets/images/events/afro-fusion.jpg" alt="Afro Fusion"><strong>Afro<small>Fusion</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>May</span>31</b><p>⌖ Toronto, ON</p></div><h2>Afro Fusion</h2><p>Afro •••</p><div class="tags"><span>Afro</span><span>Culture</span></div></div></a></article>
+        <article class="listing-card" data-city="Mississauga" data-category="Hip Hop" data-period="next-seven"><a href="event-details.html"><div class="listing-card__poster poster-gold"><img src="assets/images/events/wild-thoughts.jpg" alt="Wild Thoughts"><strong>Wild<small>Thoughts</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>Jun</span>1</b><p>⌖ Mississauga, ON</p></div><h2>Wild Thoughts</h2><p>Hip Hop &nbsp;•&nbsp; R&amp;B</p><div class="tags"><span>Hip Hop</span><span>R&amp;B</span></div></div></a></article>
+        <article class="listing-card" data-city="Vancouver" data-category="Festival" data-period="next-seven"><a href="event-details.html"><div class="listing-card__poster poster-blue"><img src="assets/images/events/one-africa.jpg" alt="One Africa Fest"><strong>One Africa<small>Fest</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>Jun</span>2</b><p>⌖ Vancouver, BC</p></div><h2>One Africa Fest</h2><p>Festival</p><div class="tags"><span>Festival</span><span>Africa</span></div></div></a></article>
+        <article class="listing-card" data-city="Calgary" data-category="Comedy" data-period="next-seven"><a href="event-details.html"><div class="listing-card__poster poster-pink"><img src="assets/images/events/comedy.jpg" alt="Comedy Night"><strong>Comedy<small>Night</small></strong></div><div class="listing-card__body"><div class="listing-meta"><b><span>Jun</span>3</b><p>⌖ Calgary, AB</p></div><h2>Comedy Night</h2><p>Comedy</p><div class="tags"><span>Comedy</span><span>Live</span></div></div></a></article>
+      </section>
+      <p class="empty-state" hidden>No events match those filters.</p>
+    </div>
+
+    <aside class="week-sidebar" aria-label="Events this week"><div class="sidebar-heading"><h2>This Week</h2><a href="#all-events">View all</a></div>
+      <a class="mini-event" href="event-details.html"><img src="assets/images/events/afrobeats-city.jpg" alt=""><div><h3>Afrobeats In The City</h3><b>May 24</b><p>⌖ Toronto, ON</p></div></a>
+      <a class="mini-event" href="event-details.html"><img src="assets/images/events/day-party.jpg" alt=""><div><h3>Day Party Vibes</h3><b>May 26</b><p>⌖ Brampton, ON</p></div></a>
+      <a class="mini-event" href="event-details.html"><img src="assets/images/events/amapiano.jpg" alt=""><div><h3>Amapiano Night</h3><b>May 30</b><p>⌖ Oshawa, ON</p></div></a>
+      <a class="mini-event" href="event-details.html"><img src="assets/images/events/day-party-2.jpg" alt=""><div><h3>Day Party Vibes</h3><b>Jun 3</b><p>⌖ Calgary, AB</p></div></a>
+      <a class="mini-event" href="event-details.html"><img src="assets/images/events/soca.jpg" alt=""><div><h3>Soca on the Rooftop</h3><b>Jun 3</b><p>⌖ Ottawa, ON</p></div></a>
+      <a class="button sidebar-submit" href="submit-event.html">Submit Event</a>
+    </aside>
+  </main>
+  <script src="js/main.js"></script><script src="js/public-data.js"></script><script src="js/events.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Afroverified's weekly guide to the best events near you."><title>What's The Vibe? — Afroverified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/pages/vibe.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="vibe-page">
+  <header class="header"><div class="container header__inner"><a class="brand" href="index.html" aria-label="Afroverified home"><img src="assets/images/logo-dark.png" alt="Afroverified"></a><nav class="desktop-nav" aria-label="Main navigation"><a href="events.html">Events</a><a class="active" href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a></nav><div class="header__actions"><a class="button button--small" href="submit-event.html">Submit Event</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><nav class="mobile-menu" aria-label="Mobile navigation"><a href="events.html">Events</a><a href="whats-the-vibe.html">What's The Vibe</a><a href="sweet-and-reckless.html">Sweet &amp; Reckless</a><a href="promote.html">Promote With Us</a><a href="submit-event.html">Submit Event</a></nav></header>
+  <main class="vibe-layout container">
+    <section class="vibe-content">
+      <header class="vibe-intro"><h1>What's The Vibe?</h1><p>Your weekly guide to the best events near you.</p></header>
+      <div class="vibe-tabs" role="tablist"><button class="active" type="button" role="tab" aria-selected="true" data-vibe-tab="current">This Week</button><button type="button" role="tab" aria-selected="false" data-vibe-tab="past">Past Lineups</button></div>
+      <section class="lineup-panel active" data-vibe-panel="current">
+        <div class="weekly-feature">
+          <div class="weekly-art"><img src="assets/images/vibe-weekly.jpg" alt="Afroverified weekly event guide"><div class="weekly-art__shade"></div><div class="weekly-art__copy"><h2>What's<br>The Vibe</h2><strong>May 20 – May 26</strong><span>Toronto</span><small>Curated by <b>Afroverified</b></small></div></div>
+          <div class="weekly-list">
+            <a href="event-details.html"><time datetime="2025-05-20"><b>May</b><strong>20</strong><small>Tue</small></time><div><h3>Afrobeats In The City</h3><p>Rebel, Toronto, ON</p></div><span>›</span></a>
+            <a href="event-details.html"><time datetime="2025-05-22"><b>May</b><strong>22</strong><small>Thu</small></time><div><h3>Day Party Vibes</h3><p>Brampton, ON</p></div><span>›</span></a>
+            <a href="event-details.html"><time datetime="2025-05-24"><b>May</b><strong>24</strong><small>Sat</small></time><div><h3>Amapiano Night</h3><p>Muzique, Montreal, QC</p></div><span>›</span></a>
+            <a href="event-details.html"><time datetime="2025-05-25"><b>May</b><strong>25</strong><small>Sun</small></time><div><h3>Soca on the Rooftop</h3><p>Ottawa, ON</p></div><span>›</span></a>
+            <a href="event-details.html"><time datetime="2025-05-26"><b>May</b><strong>26</strong><small>Mon</small></time><div><h3>Wild Thoughts</h3><p>Mississauga, ON</p></div><span>›</span></a>
+          </div>
+        </div>
+        <a class="button all-events-button" href="events.html">View All Events</a>
+      </section>
+      <section class="lineup-panel" data-vibe-panel="past" hidden>
+        <div class="past-grid"><article><img src="assets/images/events/afro-fusion.jpg" alt="Previous weekly lineup"><div><b>May 13 – May 19</b><h2>Toronto</h2><p>5 curated events</p></div></article><article><img src="assets/images/events/soca.jpg" alt="Previous weekly lineup"><div><b>May 6 – May 12</b><h2>Toronto</h2><p>6 curated events</p></div></article><article><img src="assets/images/events/amapiano.jpg" alt="Previous weekly lineup"><div><b>Apr 29 – May 5</b><h2>Toronto</h2><p>5 curated events</p></div></article></div>
+      </section>
+    </section>
+    <aside class="vibe-sidebar">
+      <section class="vibe-side-card about-vibe"><h2>About What's The Vibe?</h2><p>We handpick the hottest events every week so you don’t have to.</p><div class="vibe-benefits"><div><span>▣</span><b>Curated</b><small>Top events<br>only</small></div><div><span>⌖</span><b>Local</b><small>Events near<br>you</small></div><div><span>♨</span><b>Always Fresh</b><small>Updated<br>weekly</small></div></div></section>
+      <section class="vibe-side-card featured-vibe"><h2>Featured Event</h2><div><img src="assets/images/events/soca.jpg" alt="Soca on the Rooftop"><section><h3>Soca on the Rooftop</h3><b>May 25 • 2:00 PM</b><p>⌖ Ottawa, ON</p><a href="event-details.html">View Event</a></section></div></section>
+      <section class="vibe-side-card vibe-signup"><div class="mail-icon">✉</div><div><h2>Stay In The Loop</h2><p>Sign up for updates on the best events, the vibe and more.</p></div><form><label class="sr-only" for="vibe-email">Email address</label><input id="vibe-email" type="email" placeholder="Enter your email" required><button class="button" type="submit">Sign Up</button></form></section>
+    </aside>
+  </main>
+  <script src="js/main.js"></script><script src="js/public-data.js"></script><script src="js/vibe.js"></script>
+</body></html>
