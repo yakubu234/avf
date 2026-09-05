@@ -1,2 +1,5 @@
 Options -Indexes
 DirectoryIndex index.php
+RewriteEngine On
+RewriteRule ^(dashboard|events|event-details|add-event|event-categories|event-venues|event-submissions|whats-the-vibe|sweet-and-reckless|promotions|organizers|users|reports)\.html$ index.php?page=$1 [L,QSA]
+RewriteRule ^settings/(communication|email|sms|templates|signatures|notifications)\.html$ index.php?page=$1 [L,QSA]

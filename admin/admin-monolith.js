@@ -1,0 +1,16 @@
+(()=>{
+  document.querySelector('.hamb')?.addEventListener('click',()=>{document.querySelector('.sidebar')?.classList.toggle('open');document.querySelector('.mobile-overlay')?.classList.toggle('open')});
+  document.querySelector('.mobile-overlay')?.addEventListener('click',()=>document.querySelector('.hamb')?.click());
+  document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{tab.parentElement?.querySelectorAll('.tab').forEach(item=>item.classList.remove('active'));tab.classList.add('active')}));
+  document.querySelectorAll('.toggle').forEach(toggle=>toggle.addEventListener('click',()=>toggle.classList.toggle('on')));
+  document.querySelector('.table-search')?.addEventListener('input',event=>document.querySelectorAll('tbody tr').forEach(row=>row.hidden=!row.dataset.search?.includes(event.target.value.toLowerCase())));
+  document.querySelectorAll('.select-all').forEach(control=>control.addEventListener('change',()=>document.querySelectorAll('tbody input[type=checkbox]').forEach(item=>item.checked=control.checked)));
+  document.querySelectorAll('tbody tr').forEach(row=>row.addEventListener('click',()=>{document.querySelectorAll('tbody tr').forEach(item=>item.classList.remove('selected'));row.classList.add('selected');const heading=row.querySelector('b,strong')?.textContent;if(heading&&document.querySelector('.detail h2'))document.querySelector('.detail h2').textContent=heading}));
+  document.querySelectorAll('.menu-btn').forEach(button=>button.addEventListener('click',event=>{event.stopPropagation();document.querySelector('.action-pop')?.remove();const popover=document.createElement('div');popover.className='action-pop';popover.innerHTML='<button>View details</button><button>Edit</button><button>Duplicate</button><button class="danger-item">Delete</button>';popover.style.left=Math.min(innerWidth-165,event.clientX-120)+'px';popover.style.top=Math.min(innerHeight-170,event.clientY+8)+'px';document.body.append(popover);popover.querySelector('.danger-item').onclick=()=>{popover.remove();document.querySelector('.modal')?.classList.add('open')}}));
+  document.addEventListener('click',()=>document.querySelector('.action-pop')?.remove());
+  document.querySelectorAll('.destructive').forEach(button=>button.addEventListener('click',()=>document.querySelector('.modal')?.classList.add('open')));
+  document.querySelector('.modal-cancel')?.addEventListener('click',()=>document.querySelector('.modal')?.classList.remove('open'));
+  let step=0;document.querySelector('.next-step')?.addEventListener('click',()=>{step=Math.min(3,step+1);document.querySelectorAll('.step').forEach((item,index)=>item.classList.toggle('active',index===step));const title=document.querySelector('.wizard h2');if(title)title.textContent=['Event Information','Event Details','Media & Links','Review Event'][step]});
+  document.addEventListener('click',event=>{const link=event.target.closest('a[href]');if(!link||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||link.target==='_blank')return;const destination=new URL(link.href,location.href);if(destination.origin===location.origin&&destination.pathname.includes('/admin/'))document.body.classList.add('admin-navigating')});
+  window.addEventListener('pageshow',()=>document.body.classList.remove('admin-navigating'));
+})();

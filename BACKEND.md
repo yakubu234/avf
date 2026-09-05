@@ -29,3 +29,5 @@ Change this password before production deployment.
 Public endpoints include events, event details, categories, venues, organizers, promotions, the current Vibe edition, event submission, and newsletter signup. Admin CRUD endpoints under `/api/admin/*` require a valid administrator session created through `/api/auth/login`.
 
 Apache uses `api/.htaccess` to map clean `/api/events`-style URLs to the front controller. The direct equivalent for servers without rewriting is `/api/index.php?route=events`.
+
+The admin area is rendered server-side through `admin/index.php`. Existing `.html` admin URLs are internally rewritten to the PHP front controller, so bookmarks remain valid while complete authenticated HTML is returned in the first response. Ensure Apache `mod_rewrite` and `.htaccess` overrides are enabled.
