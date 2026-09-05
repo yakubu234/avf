@@ -50,4 +50,4 @@ async function boot(){const prefix=location.pathname.includes('/settings/')?'../
 document.addEventListener('click',event=>{const link=event.target.closest('a[href]');if(!link||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||link.target==='_blank'||link.hasAttribute('download'))return;const destination=new URL(link.href,location.href);if(destination.origin===location.origin&&destination.pathname.includes('/admin/')&&destination.href!==location.href)document.body.classList.add('admin-navigating')});
 window.addEventListener('pageshow',()=>document.body.classList.remove('admin-navigating'));
 boot().finally(()=>document.body.classList.add('admin-ready'));
-const backendScript=document.createElement('script');backendScript.src=location.pathname.includes('/settings/')?'../admin-api.js':'admin-api.js';document.head.append(backendScript);
+const backendScript=document.createElement('script');backendScript.src=(location.pathname.includes('/settings/')?'../admin-api.js':'admin-api.js')+'?v=20260905.1';document.head.append(backendScript);
