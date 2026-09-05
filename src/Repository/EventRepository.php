@@ -7,7 +7,13 @@ use Doctrine\DBAL\Connection;
 
 final class EventRepository
 {
-    public function __construct(private readonly Connection $db) {}
+    /** @var Connection */
+    private $db;
+
+    public function __construct(Connection $db)
+    {
+        $this->db = $db;
+    }
 
     public function all(array $filters = []): array
     {
@@ -23,7 +29,7 @@ final class EventRepository
         return $this->db->fetchAllAssociative($sql, $params);
     }
 
-    public function find(string|int $id): ?array
+    public function find($id): ?array
     {
         $column = ctype_digit((string) $id) ? 'e.id' : 'e.slug';
         return $this->db->fetchAssociative("SELECT e.*, c.name category_name, c.slug category_slug, o.name organizer_name, o.email organizer_email, v.name venue_record_name FROM events e JOIN event_categories c ON c.id=e.category_id JOIN organizers o ON o.id=e.organizer_id LEFT JOIN venues v ON v.id=e.venue_id WHERE $column = ?", [$id]) ?: null;

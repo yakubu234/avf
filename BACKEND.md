@@ -1,6 +1,6 @@
 # Afroverified backend
 
-The project uses PHP 8.2, Doctrine DBAL, and Doctrine Migrations. It keeps the existing HTML/CSS presentation and exposes JSON endpoints from `api/`.
+The project supports PHP 7.4.33 and newer, using PHP 7.4-compatible releases of Doctrine DBAL and Doctrine Migrations. It keeps the existing HTML/CSS presentation and exposes JSON endpoints from `api/`.
 
 ## Install and deploy
 

@@ -5,7 +5,7 @@ namespace AfroVerified\Http;
 
 final class JsonResponse
 {
-    public static function send(mixed $data, int $status = 200): never
+    public static function send($data, int $status = 200): void
     {
         http_response_code($status);
         header('Content-Type: application/json; charset=utf-8');
@@ -17,7 +17,7 @@ final class JsonResponse
     public static function input(): array
     {
         $type = $_SERVER['CONTENT_TYPE'] ?? '';
-        if (str_contains($type, 'application/json')) {
+        if (strpos($type, 'application/json') !== false) {
             return json_decode(file_get_contents('php://input') ?: '{}', true, 512, JSON_THROW_ON_ERROR);
         }
         return $_POST;

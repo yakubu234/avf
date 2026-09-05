@@ -65,7 +65,7 @@ try {
         if(!move_uploaded_file($file['tmp_name'],$directory.'/'.$name))JsonResponse::send(['error'=>'Upload could not be stored'],500);
         JsonResponse::send(['ok'=>true,'path'=>'uploads/'.$name],201);
     }
-    if (str_starts_with($route, 'admin/')) {
+    if (strpos($route, 'admin/') === 0) {
         $user = Auth::requireAdmin(); $resource = $parts[1] ?? ''; $id = isset($parts[2]) ? (int) $parts[2] : null;
         $allowed = ['events' => 'events', 'categories' => 'event_categories', 'venues' => 'venues', 'organizers' => 'organizers', 'promotions' => 'promotions', 'submissions' => 'event_submissions', 'users' => 'users', 'templates' => 'message_templates', 'signatures' => 'email_signatures', 'notifications' => 'notification_definitions'];
         if (!isset($allowed[$resource])) JsonResponse::send(['error' => 'Unknown resource'], 404);

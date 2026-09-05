@@ -1,12 +1,15 @@
 {
   "name": "afroverified/platform",
   "description": "Lightweight OOP backend for the Afroverified public site and admin portal",
+  "license": "proprietary",
   "type": "project",
   "require": {
-    "php": "^8.2",
-    "doctrine/dbal": "^4.0",
-    "doctrine/migrations": "^3.9",
-    "symfony/cache": "^7.0"
+    "php": "^7.4 || ^8.0",
+    "doctrine/dbal": "^3.6",
+    "doctrine/migrations": "~3.5.0"
+  },
+  "config": {
+    "platform": {"php": "7.4.33"}
   },
   "autoload": {
     "psr-4": {"AfroVerified\\": "src/"}
