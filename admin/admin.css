@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @view-transition{navigation:auto}
 ::view-transition-old(root){animation:admin-page-out .14s ease both}
 ::view-transition-new(root){animation:admin-page-in .22s ease both}
