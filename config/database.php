@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__) . '/src/Environment.php';
+\AfroVerified\Environment::load(dirname(__DIR__) . '/.env');
+
 return [
     'driver' => 'pdo_mysql',
     'host' => getenv('DB_HOST') ?: 'localhost',

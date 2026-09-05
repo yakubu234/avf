@@ -13,6 +13,8 @@ php bin/seed.php
 
 Configure production credentials with the `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` environment variables. The values supplied for local development are the current fallbacks in `config/database.php`.
 
+Copy `.env.example` to `.env` and enter the hosting database credentials. The application loads this file automatically; operating-system environment variables take precedence when present. Keep `.env` out of Git because it contains secrets.
+
 The seeder is safe to run repeatedly: it exits without duplicating records when users already exist.
 
 ## Sample administrator
