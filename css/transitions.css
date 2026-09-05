@@ -1,0 +1,10 @@
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:site-page-out .14s ease both}
+::view-transition-new(root){animation:site-page-in .22s ease both}
+@keyframes site-page-out{to{opacity:.84}}
+@keyframes site-page-in{from{opacity:.72;transform:translateY(3px)}to{opacity:1;transform:none}}
+.public-data-loading{position:relative;overflow:hidden;isolation:isolate}
+.public-data-loading::after{content:'';position:absolute;inset:0;z-index:20;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.025) 20%,rgba(255,255,255,.16) 42%,rgba(255,255,255,.025) 64%) -160% 0/250% 100% no-repeat;animation:public-data-shimmer 1.05s ease-in-out infinite}
+.public-data-loading>*{opacity:.48}
+@keyframes public-data-shimmer{to{background-position:160% 0}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}.public-data-loading::after{animation-duration:1.8s}}

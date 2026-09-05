@@ -1,6 +1,8 @@
 (async()=>{
   const asset=value=>value?.startsWith('http')?value:value||'assets/images/events/afrobeats-city.jpg';
   const date=value=>new Date(value.replace(' ','T'));
+  const loadingTargets=[...document.querySelectorAll('.event-card,.listing-card'),...(document.body.classList.contains('details-page')?[document.querySelector('.detail-main')||document.querySelector('main')]:[])].filter(Boolean);
+  loadingTargets.forEach(node=>node.classList.add('public-data-loading'));
   try{
     const response=await fetch('api/events?status=published&limit=24');
     if(!response.ok)return;
@@ -35,4 +37,5 @@
       document.querySelectorAll('[data-calendar]').forEach(button=>button.dataset.eventDate=when.toISOString());
     }
   }catch(error){console.info('Public pages are using bundled sample content.',error)}
+  finally{loadingTargets.forEach(node=>node.classList.remove('public-data-loading'))}
 })();
