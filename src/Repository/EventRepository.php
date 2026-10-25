@@ -25,14 +25,14 @@ final class EventRepository
         if (!empty($filters['sweet_reckless'])) { $where[] = 'e.sweet_reckless = 1'; }
         if (!empty($filters['q'])) { $where[] = '(e.name LIKE ? OR o.name LIKE ? OR e.city LIKE ?)'; $term = '%' . $filters['q'] . '%'; array_push($params, $term, $term, $term); }
         $limit = max(1, min(100, (int) ($filters['limit'] ?? 24)));
-        $sql = "SELECT e.*, c.name category_name, c.slug category_slug, o.name organizer_name, o.company organizer_company, v.name venue_record_name FROM events e JOIN event_categories c ON c.id=e.category_id JOIN organizers o ON o.id=e.organizer_id LEFT JOIN venues v ON v.id=e.venue_id" . ($where ? ' WHERE ' . implode(' AND ', $where) : '') . " ORDER BY e.starts_at DESC LIMIT $limit";
+        $sql = "SELECT e.*, c.name category_name, c.slug category_slug, o.name organizer_name, o.company organizer_company, v.name venue_record_name, s.name sponsor_name, s.logo sponsor_logo, s.website sponsor_website FROM events e JOIN event_categories c ON c.id=e.category_id JOIN organizers o ON o.id=e.organizer_id LEFT JOIN venues v ON v.id=e.venue_id LEFT JOIN sponsors s ON s.id=e.sponsor_id AND s.status='active'" . ($where ? ' WHERE ' . implode(' AND ', $where) : '') . " ORDER BY e.starts_at DESC LIMIT $limit";
         return $this->db->fetchAllAssociative($sql, $params);
     }
 
     public function find($id): ?array
     {
         $column = ctype_digit((string) $id) ? 'e.id' : 'e.slug';
-        return $this->db->fetchAssociative("SELECT e.*, c.name category_name, c.slug category_slug, o.name organizer_name, o.email organizer_email, v.name venue_record_name FROM events e JOIN event_categories c ON c.id=e.category_id JOIN organizers o ON o.id=e.organizer_id LEFT JOIN venues v ON v.id=e.venue_id WHERE $column = ?", [$id]) ?: null;
+        return $this->db->fetchAssociative("SELECT e.*, c.name category_name, c.slug category_slug, o.name organizer_name, o.email organizer_email, v.name venue_record_name, s.name sponsor_name, s.logo sponsor_logo, s.website sponsor_website FROM events e JOIN event_categories c ON c.id=e.category_id JOIN organizers o ON o.id=e.organizer_id LEFT JOIN venues v ON v.id=e.venue_id LEFT JOIN sponsors s ON s.id=e.sponsor_id AND s.status='active' WHERE $column = ?", [$id]) ?: null;
     }
 
     public function dashboard(): array

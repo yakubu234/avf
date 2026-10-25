@@ -32,8 +32,20 @@
       const {data:event}=await detailResponse.json(),when=date(event.starts_at);
       document.title=`${event.name} | Afroverified`;
       const poster=document.querySelector('.detail-poster img');if(poster){poster.src=asset(event.poster);poster.alt=`${event.name} event poster`}
-      const heading=document.querySelector('.event-info h1');if(heading)heading.textContent=event.name;
-      const paragraphs=document.querySelectorAll('.event-info p');if(paragraphs[0])paragraphs[0].textContent=event.description;
+      const heading=document.querySelector('.event-primary h1');if(heading)heading.textContent=event.name;
+      document.querySelectorAll('.event-summary,.about-event>p').forEach(paragraph=>paragraph.textContent=event.description);
+      const facts=document.querySelectorAll('.event-facts dd'),time=value=>value.toLocaleTimeString('en',{hour:'numeric',minute:'2-digit'});
+      if(facts[0])facts[0].textContent=when.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+      if(facts[1])facts[1].textContent=event.ends_at?`${time(when)} – ${time(date(event.ends_at))}`:time(when);
+      if(facts[2]){facts[2].innerHTML='<strong></strong><small></small>';facts[2].querySelector('strong').textContent=event.venue_name||event.venue_record_name||event.city;facts[2].querySelector('small').textContent=event.venue_address||`${event.city}, ${event.country}`}
+      const sponsor=document.querySelector('.event-sponsor');
+      if(sponsor&&event.sponsor_name){
+        sponsor.querySelector('strong').textContent=event.sponsor_name;
+        const logo=sponsor.querySelector('.event-sponsor__logo');
+        if(event.sponsor_logo){const image=new Image();image.src=asset(event.sponsor_logo);image.alt='';logo.replaceChildren(image)}else logo.textContent=event.sponsor_name.slice(0,2).toUpperCase();
+        if(/^https?:\/\//i.test(event.sponsor_website||'')){sponsor.href=event.sponsor_website;sponsor.target='_blank';sponsor.rel='noopener sponsored'}
+        sponsor.hidden=false;
+      }
       document.querySelectorAll('[data-calendar]').forEach(button=>button.dataset.eventDate=when.toISOString());
     }
   }catch(error){console.info('Public pages are using bundled sample content.',error)}

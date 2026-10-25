@@ -33,6 +33,7 @@ try {
     if ($route === 'categories' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative("SELECT c.*, COUNT(e.id) event_count FROM event_categories c LEFT JOIN events e ON e.category_id=c.id GROUP BY c.id ORDER BY c.name")]);
     if ($route === 'venues' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative('SELECT * FROM venues ORDER BY name')]);
     if ($route === 'organizers' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative("SELECT o.*, COUNT(e.id) event_count FROM organizers o LEFT JOIN events e ON e.organizer_id=o.id GROUP BY o.id ORDER BY o.name")]);
+    if ($route === 'sponsors' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative("SELECT id, name, logo, website, tagline FROM sponsors WHERE status='active' ORDER BY sort_order, name")]);
     if ($route === 'promotions' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative('SELECT * FROM promotions ORDER BY starts_at DESC')]);
     if ($route === 'vibe/current' && $method === 'GET') JsonResponse::send(['data' => $db->fetchAssociative("SELECT * FROM vibe_editions WHERE status='active' ORDER BY starts_on DESC LIMIT 1"), 'events' => $events->all(['status' => 'published', 'limit' => 5])]);
     if ($route === 'submissions' && $method === 'POST') {
@@ -67,20 +68,22 @@ try {
     }
     if (strpos($route, 'admin/') === 0) {
         $user = Auth::requireAdmin(); $resource = $parts[1] ?? ''; $id = isset($parts[2]) ? (int) $parts[2] : null;
-        $allowed = ['events' => 'events', 'categories' => 'event_categories', 'venues' => 'venues', 'organizers' => 'organizers', 'promotions' => 'promotions', 'submissions' => 'event_submissions', 'users' => 'users', 'templates' => 'message_templates', 'signatures' => 'email_signatures', 'notifications' => 'notification_definitions'];
+        $allowed = ['events' => 'events', 'categories' => 'event_categories', 'venues' => 'venues', 'organizers' => 'organizers', 'promotions' => 'promotions', 'submissions' => 'event_submissions', 'users' => 'users', 'templates' => 'message_templates', 'signatures' => 'email_signatures', 'notifications' => 'notification_definitions', 'sponsors' => 'sponsors'];
         if (!isset($allowed[$resource])) JsonResponse::send(['error' => 'Unknown resource'], 404);
         $table = $allowed[$resource];
         if ($method === 'GET') JsonResponse::send(['data' => $db->fetchAllAssociative("SELECT * FROM $table ORDER BY id DESC LIMIT 100")]);
         Auth::requireCsrf();
         $input = JsonResponse::input();
         $columns = [
-            'events'=>['category_id','venue_id','organizer_id','name','slug','subtitle','description','event_type','subcategory','starts_at','ends_at','city','country','venue_name','venue_address','poster','hero_image','instagram','website','ticket_url','age_restriction','dress_code','status','featured','sweet_reckless'],
+            'events'=>['category_id','venue_id','organizer_id','sponsor_id','name','slug','subtitle','description','event_type','subcategory','starts_at','ends_at','city','country','venue_name','venue_address','poster','hero_image','instagram','website','ticket_url','age_restriction','dress_code','status','featured','sweet_reckless'],
             'categories'=>['name','slug','description','icon','color','status'], 'venues'=>['name','slug','address','city','region','country','capacity','image','status'],
             'organizers'=>['user_id','name','company','email','phone','city','country','instagram','website','logo','status'], 'promotions'=>['event_id','organizer_id','name','slug','type','description','image','starts_at','ends_at','status'],
             'submissions'=>['status','admin_notes','reviewed_by','reviewed_at'], 'users'=>['name','email','role','status','phone','location','avatar'],
-            'templates'=>['name','channel','category','subject','html_body','text_body','status'], 'signatures'=>['name','html_body','text_body','status'], 'notifications'=>['name','category','channels','status']
+            'templates'=>['name','channel','category','subject','html_body','text_body','status'], 'signatures'=>['name','html_body','text_body','status'], 'notifications'=>['name','category','channels','status'], 'sponsors'=>['name','logo','website','tagline','status','sort_order']
         ];
         $input = array_intersect_key($input, array_flip($columns[$resource]));
+        foreach (['sponsor_id','venue_id'] as $nullable) if (array_key_exists($nullable, $input) && ($input[$nullable] === '' || $input[$nullable] === null)) $input[$nullable] = null;
+        if ($resource === 'sponsors' && array_key_exists('name', $input) && trim((string) $input['name']) === '') JsonResponse::send(['error'=>'Sponsor name is required'],422);
         foreach (['channels'] as $jsonField) if (isset($input[$jsonField]) && is_array($input[$jsonField])) $input[$jsonField] = json_encode($input[$jsonField], JSON_THROW_ON_ERROR);
         if ($method === 'POST') { if (!$input) JsonResponse::send(['error'=>'No valid fields supplied'],422); if (array_key_exists('created_at',$db->createSchemaManager()->listTableColumns($table))) $input['created_at']=date('Y-m-d H:i:s'); $input['updated_at']=date('Y-m-d H:i:s'); $db->insert($table,$input); JsonResponse::send(['ok'=>true,'id'=>(int)$db->lastInsertId()],201); }
         if ($method === 'PATCH' && $id) { if (!$input) JsonResponse::send(['error'=>'No valid fields supplied'],422); $input['updated_at'] = date('Y-m-d H:i:s'); $db->update($table, $input, ['id' => $id]); JsonResponse::send(['ok' => true]); }
